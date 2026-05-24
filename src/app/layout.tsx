@@ -8,6 +8,12 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "Habits",
   description: "Daily habit tracker",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "Habits",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport: Viewport = {
