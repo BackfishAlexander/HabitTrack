@@ -36,8 +36,8 @@ docker run -d --name habits-pg -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgr
 3. In the same project: **+ New → Database → PostgreSQL**.
 4. On the web service, open **Variables** and add:
    - `DATABASE_URL` = `${{ Postgres.DATABASE_URL }}` (reference the Postgres plugin)
-5. Deploy. The build command runs `prisma db push` automatically, so the
-   schema is created on first deploy.
+5. Deploy. The start command runs `prisma db push` against your Postgres,
+   so the schema is created/updated on every boot.
 6. Open the public URL Railway gives you, hit **Habits**, and add what you
    want to track.
 
