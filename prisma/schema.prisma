@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Habit {
+  id        String   @id @default(cuid())
+  name      String
+  active    Boolean  @default(true)
+  position  Int      @default(0)
+  createdAt DateTime @default(now())
+  ratings   Rating[]
+
+  @@index([active, position])
+}
+
+/// One row per (habit, habit-day). habitDate is the YYYY-MM-DD label of the
+/// habit-day (ET; the day boundary is 5am local time). nameSnapshot freezes
+/// the habit's name as of generation so renames don't rewrite history.
+model Rating {
+  id            String   @id @default(cuid())
+  habitId       String
+  habit         Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  habitDate     String
+  value         Int?
+  nameSnapshot  String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([habitId, habitDate])
+  @@index([habitDate])
+}

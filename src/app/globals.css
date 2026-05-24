@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  background-color: #0a0a0b;
+  color: #ececf0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+/* Subtle scroll behavior */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+input, textarea {
+  background: transparent;
+}
+
+@layer utilities {
+  .surface {
+    background-color: #111113;
+    border: 1px solid #1c1c22;
+  }
+  .surface-hover:hover {
+    background-color: #16161a;
+  }
+  .divider {
+    border-color: #1c1c22;
+  }
+  .text-muted {
+    color: #8a8a96;
+  }
+  .text-dim {
+    color: #5a5a66;
+  }
+}
